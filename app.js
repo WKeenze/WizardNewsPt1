@@ -10,6 +10,8 @@ const errFunc = require('./views/err');
 app.use(morgan('dev'));
 app.use(express.static('public'));
 
+
+
 app.get("/", (req, res, next) => {
   const posts= postBank.list();
 res.send(postList(posts));
@@ -23,7 +25,7 @@ app.get('/posts/:id', (req, res, next) => {
   res.send(postDetails(post));
 });
 
-app.use('*', (req, res, next) => {
+app.get('*', (req, res, next) => {
   res.status(404).send(errFunc());
 next()
 })
